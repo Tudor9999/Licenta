@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://bady4pdb8gxrr"]
+
+[ext_resource type="Texture2D" uid="uid://17pnmxi1epsv" path="res://assets/sprites/Anim/diamond-01.png" id="1_4kk52"]
+[ext_resource type="Script" path="res://scripts/diamond.gd" id="1_u24ay"]
+[ext_resource type="Texture2D" uid="uid://61eg222vtxoy" path="res://assets/sprites/Anim/diamond-02.png" id="2_y0iv4"]
+[ext_resource type="Texture2D" uid="uid://dxr3x27r55kjo" path="res://assets/sprites/Anim/diamond-03.png" id="3_w5ar6"]
+[ext_resource type="Texture2D" uid="uid://b3n58yw4v86fh" path="res://assets/sprites/Anim/diamond-04.png" id="4_xhaan"]
+[ext_resource type="Texture2D" uid="uid://beeuvh064vtc5" path="res://assets/sprites/Anim/diamond-05.png" id="5_2gtqc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nt62t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4kk52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_y0iv4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w5ar6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xhaan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2gtqc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xygl1"]
+radius = 3.0
+height = 8.0
+
+[node name="diamond" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_u24ay")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nt62t")
+autoplay = "default"
+frame_progress = 0.124255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_xygl1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

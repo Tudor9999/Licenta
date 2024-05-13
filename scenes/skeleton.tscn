@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://debvo64hfxxb1"]
+
+[ext_resource type="Texture2D" uid="uid://bemrh1hwod18q" path="res://assets/1 Enemy/PNG/idle-1.png" id="1_fp8xq"]
+[ext_resource type="Texture2D" uid="uid://d2ygn328dftq5" path="res://assets/1 Enemy/PNG/idle-2.png" id="2_xst3g"]
+[ext_resource type="Texture2D" uid="uid://damu6lcgqth0f" path="res://assets/1 Enemy/PNG/idle-3.png" id="3_ih3ap"]
+[ext_resource type="Texture2D" uid="uid://c58u0vc3mk1ui" path="res://assets/1 Enemy/PNG/idle-4.png" id="4_hlmc0"]
+[ext_resource type="PackedScene" uid="uid://dcooem5r2e4t0" path="res://scenes/killzone.tscn" id="5_yj4ha"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xwgr4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fp8xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xst3g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ih3ap")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hlmc0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4bae"]
+size = Vector2(20, 58)
+
+[node name="Skeleton" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(19, -48)
+sprite_frames = SubResource("SpriteFrames_xwgr4")
+autoplay = "default"
+frame_progress = 0.775656
+
+[node name="killzone" parent="AnimatedSprite2D" instance=ExtResource("5_yj4ha")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/killzone"]
+position = Vector2(-20, 18)
+shape = SubResource("RectangleShape2D_x4bae")
