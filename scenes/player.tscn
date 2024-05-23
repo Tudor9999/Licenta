@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqe2x4j1rkg3e"]
+[gd_scene load_steps=36 format=3 uid="uid://cqe2x4j1rkg3e"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_3e2a5"]
 [ext_resource type="Texture2D" uid="uid://lh75h4olmdbr" path="res://assets/Player/PNG/Idle/idle-1.png" id="2_kaj7l"]
@@ -7,6 +7,32 @@
 [ext_resource type="Texture2D" uid="uid://ba6igampcihbq" path="res://assets/Player/PNG/Idle/idle-4.png" id="5_mmrdd"]
 [ext_resource type="Texture2D" uid="uid://bb0k5d3fjrpd" path="res://assets/Player/PNG/Idle/idle-5.png" id="6_ocm7y"]
 [ext_resource type="Texture2D" uid="uid://heqwle0s2kda" path="res://assets/Player/PNG/Idle/idle-6.png" id="7_mlgoh"]
+[ext_resource type="Texture2D" uid="uid://c58rofh10eddk" path="res://assets/Player/PNG/Jump/jump-1.png" id="8_0clok"]
+[ext_resource type="Texture2D" uid="uid://6mfpdr1wfudp" path="res://assets/Player/PNG/Jump/jump-2.png" id="9_we168"]
+[ext_resource type="Texture2D" uid="uid://b605vrwfwvsbn" path="res://assets/Player/PNG/Jump/jump-3.png" id="10_x5jgg"]
+[ext_resource type="Texture2D" uid="uid://cit1hjhnl18kb" path="res://assets/Player/PNG/Jump/jump-4.png" id="11_je45g"]
+[ext_resource type="Texture2D" uid="uid://dyqy7o5klaxk4" path="res://assets/Player/PNG/Jump/jump-5.png" id="12_xuhk2"]
+[ext_resource type="Texture2D" uid="uid://b7t7ecn5m6il2" path="res://assets/Player/PNG/Jump/jump-6.png" id="13_xr35b"]
+[ext_resource type="Texture2D" uid="uid://6flkne1yfpn3" path="res://assets/Player/PNG/Jump/jump-7.png" id="14_o76ml"]
+[ext_resource type="Texture2D" uid="uid://crw4ucgdd8kx5" path="res://assets/Player/PNG/Jump/jump-8.png" id="15_rowpb"]
+[ext_resource type="Texture2D" uid="uid://bi71qfx38atnh" path="res://assets/Player/PNG/Jump/jump-9.png" id="16_3eb21"]
+[ext_resource type="Texture2D" uid="uid://dh2dhwugtllrw" path="res://assets/Player/PNG/Jump/jump-10.png" id="17_bwte2"]
+[ext_resource type="Texture2D" uid="uid://dap43rs4r14iq" path="res://assets/Player/PNG/Jump/jump-11.png" id="18_tn4m2"]
+[ext_resource type="Texture2D" uid="uid://rqs6damntm0s" path="res://assets/Player/PNG/Jump/jump-12.png" id="19_8evvp"]
+[ext_resource type="Texture2D" uid="uid://7ecxtx2pqy0r" path="res://assets/Player/PNG/Jump/jump-13.png" id="20_e1gn5"]
+[ext_resource type="Texture2D" uid="uid://d1lu3b8h2pe5c" path="res://assets/Player/PNG/Jump/jump-14.png" id="21_uemsl"]
+[ext_resource type="Texture2D" uid="uid://38b5r1yj2ybh" path="res://assets/Player/PNG/Run/run-1.png" id="22_lcj21"]
+[ext_resource type="Texture2D" uid="uid://bp0w6cegx6ibo" path="res://assets/Player/PNG/Run/run-2.png" id="23_n8bsq"]
+[ext_resource type="Texture2D" uid="uid://d0srcbyvluwr1" path="res://assets/Player/PNG/Run/run-3.png" id="24_bwyfd"]
+[ext_resource type="Texture2D" uid="uid://f8e0g5uhgin3" path="res://assets/Player/PNG/Run/run-4.png" id="25_37rs2"]
+[ext_resource type="Texture2D" uid="uid://ql27akg6bcw7" path="res://assets/Player/PNG/Run/run-5.png" id="26_5r0vr"]
+[ext_resource type="Texture2D" uid="uid://ce23c18uddqfa" path="res://assets/Player/PNG/Run/run-6.png" id="27_odqpu"]
+[ext_resource type="Texture2D" uid="uid://cur72qsljc7v2" path="res://assets/Player/PNG/Run/run-7.png" id="28_faglf"]
+[ext_resource type="Texture2D" uid="uid://clnh5vsxxcwpi" path="res://assets/Player/PNG/Run/run-8.png" id="29_ldem0"]
+[ext_resource type="Texture2D" uid="uid://bjcdbjxugas1p" path="res://assets/Player/PNG/Run/run-9.png" id="30_c1usx"]
+[ext_resource type="Texture2D" uid="uid://sja38iywwa33" path="res://assets/Player/PNG/Run/run-10.png" id="31_8pjm4"]
+[ext_resource type="Texture2D" uid="uid://bm0fgbwvga8gx" path="res://assets/Player/PNG/Run/run-11.png" id="32_n1jkc"]
+[ext_resource type="Texture2D" uid="uid://5oy1c58wl5ei" path="res://assets/Player/PNG/Run/run-12.png" id="33_2tjmp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g1bi3"]
 animations = [{
@@ -30,8 +56,96 @@ animations = [{
 "texture": ExtResource("7_mlgoh")
 }],
 "loop": true,
-"name": &"default",
-"speed": 2.0
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_0clok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_we168")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_x5jgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_je45g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xuhk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xr35b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_o76ml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rowpb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_3eb21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_bwte2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_tn4m2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_8evvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_e1gn5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_uemsl")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_lcj21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_n8bsq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_bwyfd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_37rs2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_5r0vr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_odqpu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_faglf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ldem0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_c1usx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_8pjm4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_n1jkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_2tjmp")
+}],
+"loop": true,
+"name": &"run",
+"speed": 16.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ei46a"]
@@ -46,8 +160,9 @@ script = ExtResource("1_3e2a5")
 z_index = 10
 position = Vector2(1, -15)
 sprite_frames = SubResource("SpriteFrames_g1bi3")
-autoplay = "default"
-frame_progress = 0.354616
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.88149
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-19.5, -12.5)
