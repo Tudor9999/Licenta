@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3fwu1nq0672b"]
+
+[ext_resource type="Script" path="res://scripts/enemy_health_bar.gd" id="1_k2j8o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jp52s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2bdf"]
+bg_color = Color(0.898039, 0.396078, 0.180392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8b6p"]
+bg_color = Color(0.17881, 0.17881, 0.17881, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mmnu"]
+bg_color = Color(0.953041, 0.95304, 0.953041, 1)
+
+[node name="EnemyHealthBar" type="ProgressBar"]
+z_index = 1
+offset_right = 371.0
+offset_bottom = 15.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_jp52s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_t2bdf")
+step = 1.0
+value = 70.0
+show_percentage = false
+script = ExtResource("1_k2j8o")
+
+[node name="DamageBar" type="ProgressBar" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_r8b6p")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8mmnu")
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
