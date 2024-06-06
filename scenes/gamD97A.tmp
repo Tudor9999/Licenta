@@ -7963,9 +7963,7 @@ position = Vector2(1150, 126)
 shape = SubResource("WorldBoundaryShape2D_248fp")
 
 [node name="Skeleton" parent="." instance=ExtResource("7_nrrq2")]
-position = Vector2(569, -7)
-
-[node name="Skeleton2" parent="." instance=ExtResource("7_nrrq2")]
-position = Vector2(435, 24)
+z_index = 1
+position = Vector2(497, 24)
 
 [connection signal="diamonds_gained" from="." to="Diamonds/diamond" method="_on_game_diamonds_gained"]

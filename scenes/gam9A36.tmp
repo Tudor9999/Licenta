@@ -1,6 +1,5 @@
-[gd_scene load_steps=19 format=3 uid="uid://85vf77nlbljq"]
+[gd_scene load_steps=18 format=3 uid="uid://85vf77nlbljq"]
 
-[ext_resource type="Script" path="res://scripts/UIManager.gd" id="1_2ganm"]
 [ext_resource type="PackedScene" uid="uid://cqe2x4j1rkg3e" path="res://scenes/player.tscn" id="1_jxku8"]
 [ext_resource type="Texture2D" uid="uid://cwsq2mp1v87lh" path="res://assets/sprites/main_lev_build.png" id="2_pbnga"]
 [ext_resource type="PackedScene" uid="uid://0s7afmrgw1mr" path="res://scenes/platform.tscn" id="3_24cvr"]
@@ -7881,7 +7880,6 @@ sources/2 = SubResource("TileSetAtlasSource_sngeg")
 script = SubResource("GDScript_0rif0")
 
 [node name="UIManager" type="CanvasLayer" parent="."]
-script = ExtResource("1_2ganm")
 
 [node name="DiamondIcon" type="TextureRect" parent="UIManager"]
 offset_left = 6.0
@@ -7897,7 +7895,6 @@ offset_right = 48.0
 offset_bottom = 31.0
 theme_override_font_sizes/font_size = 24
 text = "0"
-metadata/_edit_use_anchors_ = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -7963,9 +7960,7 @@ position = Vector2(1150, 126)
 shape = SubResource("WorldBoundaryShape2D_248fp")
 
 [node name="Skeleton" parent="." instance=ExtResource("7_nrrq2")]
-position = Vector2(569, -7)
-
-[node name="Skeleton2" parent="." instance=ExtResource("7_nrrq2")]
-position = Vector2(435, 24)
+z_index = 1
+position = Vector2(497, 24)
 
 [connection signal="diamonds_gained" from="." to="Diamonds/diamond" method="_on_game_diamonds_gained"]

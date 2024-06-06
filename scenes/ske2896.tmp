@@ -126,8 +126,7 @@ _data = {
 "walk": SubResource("Animation_wsyqc")
 }
 
-[node name="Skeleton" type="CharacterBody2D" groups=["Enemies"]]
-collision_layer = 2
+[node name="Skeleton" type="CharacterBody2D"]
 script = ExtResource("1_im7pn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -139,39 +138,26 @@ position = Vector2(0, -48)
 texture = ExtResource("9_x7xrd")
 
 [node name="EnemyHealthBar" parent="Sprite2D" instance=ExtResource("6_i0cnt")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -93.0
-offset_top = -64.0
-offset_right = -71.0
-offset_bottom = -61.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -33.0
+offset_top = -17.0
+offset_right = -7.0
+offset_bottom = -15.0
 scale = Vector2(1, 0.609561)
 size_flags_horizontal = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="HitBox" type="Area2D" parent="."]
-collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-21, -30)
 shape = SubResource("RectangleShape2D_auryj")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(-5, -4)
-target_position = Vector2(0, 6)
-
-[node name="RayCast2D2" type="RayCast2D" parent="."]
-position = Vector2(-21, -24)
-target_position = Vector2(21, 0)
+position = Vector2(-9, -21)
+target_position = Vector2(0, 21)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_hwe28")
 }
 autoplay = "walk"
-
-[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
