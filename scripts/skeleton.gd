@@ -8,9 +8,16 @@ extends CharacterBody2D
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var hitbox = $HitBox/CollisionShape2D
 @onready var ray_cast_2d_2 = $RayCast2D2
+@onready var animation_player = $AnimationPlayer
 
-var health
+var health = 0
+var max_health = 50
+var take_damage = true
+var hit = false
+var can_attack = true
+var dead = false
 var speed = 60
+var current_speed
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_right = true
 
@@ -48,13 +55,38 @@ func flip():
 		speed = abs(speed) * -1
 
 func _ready():
-	health = 20
+	health = max_health
 	healthbar.init_health(health)
 
+func taking_damage(damage:int):
+	if !dead:
+		animation_player.play("hit")
+		health -= damage
+		healthbar._set_health(health)
+		
+		if health <= 0:
+			die()
 
 func _on_hit_box_area_entered(area):
-	if area.get_parent() is Player:
-		area.get_parent().die()
+	if area.get_parent() is Player && !dead && can_attack:
+		area.get_parent().taking_damage(25)
+
+func get_hit():
+	hit = !hit
+	if hit:
+		current_speed = speed
+		speed = 0
+		can_attack = false
+	else:
+		speed = current_speed
+		can_attack = true
+		animation_player.play("walk")
 
 func die():
+	dead = true
+	current_speed = speed
+	speed = 0
+	animation_player.play("dead")
+	await get_tree().create_timer(0.6).timeout
+	speed = current_speed
 	queue_free()

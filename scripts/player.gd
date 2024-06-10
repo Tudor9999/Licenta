@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
-const SPEED = 175.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 200.0
+const JUMP_VELOCITY = -500.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -13,16 +13,26 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animation_player = $AnimationPlayer
 @onready var attack_area = $AttackArea/CollisionShape2D
-
+@onready var attacking_area = $AttackArea
 @onready var sprite_2d = $Sprite2D
 @onready var collision_shape_2d = $Area2D/CollisionShape2D
 
 @export var attacking = false
 @export var dead = false
 
+var max_health = 100
+var health = 0
+var take_damage = true
+var rolling = false
+
+func _ready():
+	health = max_health
+
 func _process(delta):
 	if Input.is_action_just_pressed("Attack1"):
 		attack()
+	if Input.is_action_just_pressed("roll"):
+		roll()
 
 func _physics_process(delta):
 	
@@ -39,12 +49,10 @@ func _physics_process(delta):
 	if direction > 0:
 		sprite_2d.flip_h = false
 		sprite_2d.offset = Vector2(0, 0)
-		attack_area.position = Vector2(37, 4.5)
-		collision_shape_2d.position = Vector2(22, -13)
+		attack_area.position = Vector2(39, 4.5)
 	elif direction < 0:
 		sprite_2d.offset = Vector2(-41, 0)
-		attack_area.position = Vector2(-37, 4.5)
-		collision_shape_2d.position = Vector2(-22, -13)
+		attack_area.position = Vector2(-45, 4.5)
 		sprite_2d.flip_h = true
 	
 	
@@ -56,29 +64,57 @@ func _physics_process(delta):
 	move_and_slide()
 
 func attack():
-	var overlaping_objects = $AttackArea.get_overlapping_areas()
+	var overlaping_objects = attacking_area.get_overlapping_areas()
 	for area in overlaping_objects:
 		if area.get_parent().is_in_group("Enemies"):
-			area.get_parent().die()
+			area.get_parent().taking_damage(25)
 	
 	attacking = true
-	attack_area.disabled = false
 	animation_player.play("attack1")
 
 func update_animation():
 	if !dead:
-		if !attacking:
-			attack_area.disabled = true
-			if is_on_floor():
-				
-				if velocity.x == 0:
-					animation_player.play("idle")
-				else:
-					animation_player.play("run")
+		if rolling:
+			animation_player.play("roll")
+		else:
+			if !take_damage:
+				animation_player.play("take_damage")
 			else:
-				animation_player.play("jump")
+				if !attacking:
+					if is_on_floor():
+						if velocity.x == 0:
+							animation_player.play("idle")
+						else:
+							animation_player.play("run")
+					else:
+						animation_player.play("jump")
+
+func taking_damage(damage : int):
+	if take_damage:
+		iframes()
+		health -= damage
+		
+		if health <= 0:
+			die()
+
+func iframes():
+	take_damage = false
+	await get_tree().create_timer(0.3).timeout
+	take_damage = true
+
+func roll_iframes():
+	collision_shape_2d.disabled = true
+	rolling = true
+	await  get_tree().create_timer(0.65).timeout
+	collision_shape_2d.disabled = false
+	rolling = false
+
+func roll():
+	roll_iframes()
 
 func _on_timer_timeout():
+	GameManager.diamonds = 0
+	health = max_health
 	get_tree().reload_current_scene()
 	dead = false
 

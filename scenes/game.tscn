@@ -7881,6 +7881,7 @@ sources/2 = SubResource("TileSetAtlasSource_sngeg")
 script = SubResource("GDScript_0rif0")
 
 [node name="UIManager" type="CanvasLayer" parent="."]
+process_mode = 3
 script = ExtResource("1_2ganm")
 
 [node name="DiamondIcon" type="TextureRect" parent="UIManager"]
@@ -7898,6 +7899,77 @@ offset_bottom = 31.0
 theme_override_font_sizes/font_size = 24
 text = "0"
 metadata/_edit_use_anchors_ = true
+
+[node name="PauseMenu" type="ColorRect" parent="UIManager"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -250.0
+offset_right = 200.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.183793, 0.207047, 0.390561, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIManager/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIManager/PauseMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="UIManager/PauseMenu/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Resume"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UIManager/PauseMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Restart" type="Button" parent="UIManager/PauseMenu/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Restart"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UIManager/PauseMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Levels" type="Button" parent="UIManager/PauseMenu/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Levels	"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="UIManager/PauseMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="UIManager/PauseMenu/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Quit"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -7962,10 +8034,19 @@ position = Vector2(1150, 126)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
 shape = SubResource("WorldBoundaryShape2D_248fp")
 
-[node name="Skeleton" parent="." instance=ExtResource("7_nrrq2")]
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Skeleton" parent="Enemies" instance=ExtResource("7_nrrq2")]
 position = Vector2(569, -7)
 
-[node name="Skeleton2" parent="." instance=ExtResource("7_nrrq2")]
+[node name="Skeleton2" parent="Enemies" instance=ExtResource("7_nrrq2")]
 position = Vector2(435, 24)
 
+[node name="Skeleton" parent="." instance=ExtResource("7_nrrq2")]
+position = Vector2(995, 40)
+
 [connection signal="diamonds_gained" from="." to="Diamonds/diamond" method="_on_game_diamonds_gained"]
+[connection signal="pressed" from="UIManager/PauseMenu/VBoxContainer/HBoxContainer/Resume" to="UIManager" method="_on_resume_pressed"]
+[connection signal="pressed" from="UIManager/PauseMenu/VBoxContainer/HBoxContainer2/Restart" to="UIManager" method="_on_restart_pressed"]
+[connection signal="pressed" from="UIManager/PauseMenu/VBoxContainer/HBoxContainer3/Levels" to="UIManager" method="_on_levels_pressed"]
+[connection signal="pressed" from="UIManager/PauseMenu/VBoxContainer/HBoxContainer4/Quit" to="UIManager" method="_on_quit_pressed"]
