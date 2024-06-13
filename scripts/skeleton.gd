@@ -20,6 +20,7 @@ var speed = 60
 var current_speed
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_right = true
+var attacking = false
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -69,7 +70,10 @@ func taking_damage(damage:int):
 
 func _on_hit_box_area_entered(area):
 	if area.get_parent() is Player && !dead && can_attack:
+		animation_player.play("attack1")
+		await get_tree().create_timer(0.7).timeout
 		area.get_parent().taking_damage(25)
+		animation_player.play("walk")
 
 func get_hit():
 	hit = !hit
