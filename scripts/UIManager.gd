@@ -3,6 +3,8 @@ extends CanvasLayer
 
 func _ready():
 	GameManager.pause_menu = $PauseMenu
+	GameManager.final_screen = $FinalScreen
+	GameManager.score_label = $FinalScreen/Label
 	GameManager.diamonds_gained.connect(update_diamond_display)
 
 func _process(_delta):
@@ -24,3 +26,7 @@ func _on_levels_pressed():
 
 func _on_quit_pressed():
 	GameManager.quit()
+
+
+func _on_finish_level_pressed():
+	GameManager.levels()

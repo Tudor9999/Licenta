@@ -1,0 +1,161 @@
+[gd_scene load_steps=26 format=3 uid="uid://db6tj1itm5ktq"]
+
+[ext_resource type="Script" path="res://scripts/archer.gd" id="1_eyr3m"]
+[ext_resource type="PackedScene" uid="uid://c3fwu1nq0672b" path="res://scenes/enemy_health_bar.tscn" id="1_ft1fx"]
+[ext_resource type="Texture2D" uid="uid://dxe60s45rlgpt" path="res://assets/5 Enemy/PNG/dead-4.png" id="2_t7x73"]
+[ext_resource type="Texture2D" uid="uid://b1qu6twgs2ina" path="res://assets/5 Enemy/PNG/idle-1.png" id="3_3ux0h"]
+[ext_resource type="Texture2D" uid="uid://bir7l4y58b84c" path="res://assets/5 Enemy/PNG/idle-2.png" id="4_u4ebd"]
+[ext_resource type="Texture2D" uid="uid://dan0nn66nx0fg" path="res://assets/5 Enemy/PNG/attack-A1.png" id="5_ewknf"]
+[ext_resource type="Texture2D" uid="uid://don3aqdypl0fe" path="res://assets/5 Enemy/PNG/attack-A2.png" id="6_ioh0u"]
+[ext_resource type="Texture2D" uid="uid://cb7w7damf5y48" path="res://assets/5 Enemy/PNG/attack-A3.png" id="7_tfw1y"]
+[ext_resource type="Texture2D" uid="uid://cubjym4st0oaj" path="res://assets/5 Enemy/PNG/attack-A4.png" id="8_lugg8"]
+[ext_resource type="Texture2D" uid="uid://dk0v1gq8y63mx" path="res://assets/5 Enemy/PNG/attack-A5.png" id="9_0oekr"]
+[ext_resource type="Texture2D" uid="uid://c0yki0xqbvdu7" path="res://assets/5 Enemy/PNG/attack-A6.png" id="10_trnvn"]
+[ext_resource type="Texture2D" uid="uid://bxgun1apqgy8r" path="res://assets/5 Enemy/PNG/hit-1.png" id="11_nnxxt"]
+[ext_resource type="Texture2D" uid="uid://c5onslx7tobgn" path="res://assets/5 Enemy/PNG/hit-2.png" id="12_0l4iw"]
+[ext_resource type="Texture2D" uid="uid://ctgarnwkwsj35" path="res://assets/5 Enemy/PNG/hit-3.png" id="13_g55l8"]
+[ext_resource type="Texture2D" uid="uid://ckunvg8cgfwjb" path="res://assets/5 Enemy/PNG/hit-4.png" id="14_2i4en"]
+[ext_resource type="Texture2D" uid="uid://cj4s5is4qt5yh" path="res://assets/5 Enemy/PNG/dead-1.png" id="15_a6j37"]
+[ext_resource type="Texture2D" uid="uid://tn2yjlhk1pg7" path="res://assets/5 Enemy/PNG/dead-2.png" id="16_4nkd8"]
+[ext_resource type="Texture2D" uid="uid://d3akn3gu64mlm" path="res://assets/5 Enemy/PNG/dead-3.png" id="17_v40md"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnc2r"]
+size = Vector2(20, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lyxef"]
+size = Vector2(20, 56)
+
+[sub_resource type="Animation" id="Animation_fvm2g"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_3ux0h"), ExtResource("4_u4ebd")]
+}
+
+[sub_resource type="Animation" id="Animation_2cyap"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.3001, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_ewknf"), ExtResource("6_ioh0u"), ExtResource("7_tfw1y"), ExtResource("8_lugg8"), ExtResource("8_lugg8"), ExtResource("9_0oekr"), ExtResource("10_trnvn")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_yxc4l"]
+resource_name = "hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("11_nnxxt"), ExtResource("12_0l4iw"), ExtResource("13_g55l8"), ExtResource("14_2i4en")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:shooting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_o0dfx"]
+resource_name = "dead"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("15_a6j37"), ExtResource("16_4nkd8"), ExtResource("17_v40md"), ExtResource("2_t7x73")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fkx78"]
+_data = {
+"attack": SubResource("Animation_2cyap"),
+"dead": SubResource("Animation_o0dfx"),
+"hit": SubResource("Animation_yxc4l"),
+"idle": SubResource("Animation_fvm2g")
+}
+
+[node name="Archer" type="CharacterBody2D" groups=["Enemies"]]
+script = ExtResource("1_eyr3m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 20)
+shape = SubResource("RectangleShape2D_rnc2r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("3_3ux0h")
+
+[node name="EnemyHealthBar" parent="Sprite2D" instance=ExtResource("1_ft1fx")]
+offset_left = -25.0
+offset_top = -12.0
+offset_right = 3.0
+offset_bottom = -10.0
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(10, 20)
+shape = SubResource("RectangleShape2D_lyxef")
+
+[node name="FirePoint" type="Marker2D" parent="."]
+position = Vector2(-28, 12)
+rotation = -3.14159
+scale = Vector2(1, -1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fkx78")
+}
+autoplay = "idle"

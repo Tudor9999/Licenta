@@ -11,7 +11,7 @@ extends CharacterBody2D
 @onready var animation_player = $AnimationPlayer
 
 var health = 0
-var max_health = 50
+var max_health = 75
 var take_damage = true
 var hit = false
 var can_attack = true
@@ -72,7 +72,8 @@ func _on_hit_box_area_entered(area):
 	if area.get_parent() is Player && !dead && can_attack:
 		animation_player.play("attack1")
 		await get_tree().create_timer(0.7).timeout
-		area.get_parent().taking_damage(25)
+		if area.get_parent() is Player && !dead && can_attack:
+			area.get_parent().taking_damage(25)
 		animation_player.play("walk")
 
 func get_hit():
@@ -87,6 +88,7 @@ func get_hit():
 		animation_player.play("walk")
 
 func die():
+	GameManager.score += 100
 	dead = true
 	current_speed = speed
 	speed = 0

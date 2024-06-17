@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://cqe2x4j1rkg3e"]
+[gd_scene load_steps=79 format=3 uid="uid://cqe2x4j1rkg3e"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_3e2a5"]
 [ext_resource type="Texture2D" uid="uid://dt5j0gp8wi2gu" path="res://assets/Player/PNG/Roll/roll-14.png" id="2_bag0b"]
@@ -64,6 +64,8 @@
 [ext_resource type="Texture2D" uid="uid://b4b2jsveomo60" path="res://assets/Player/PNG/Roll/roll-11.png" id="62_e83il"]
 [ext_resource type="Texture2D" uid="uid://4m8djyrb10pw" path="res://assets/Player/PNG/Roll/roll-12.png" id="63_oh0q7"]
 [ext_resource type="Texture2D" uid="uid://cxxl6sme1yrlq" path="res://assets/Player/PNG/Roll/roll-13.png" id="64_xvtjj"]
+[ext_resource type="PackedScene" uid="uid://c3fwu1nq0672b" path="res://scenes/enemy_health_bar.tscn" id="65_2m3xr"]
+[ext_resource type="AudioStream" uid="uid://6j3riukr66td" path="res://assets/Sounds/SFX/26_sword_hit_1.wav" id="66_edcij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6hx6"]
 size = Vector2(20, 58)
@@ -253,5 +255,16 @@ autoplay = "idle"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.7
+
+[node name="HealthBar" parent="." instance=ExtResource("65_2m3xr")]
+offset_left = 8.0
+offset_top = -53.0
+offset_right = 42.0
+offset_bottom = -50.0
+size_flags_horizontal = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("66_edcij")
+bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
