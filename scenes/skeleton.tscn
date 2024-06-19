@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://debvo64hfxxb1"]
+[gd_scene load_steps=37 format=3 uid="uid://debvo64hfxxb1"]
 
 [ext_resource type="Texture2D" uid="uid://bemrh1hwod18q" path="res://assets/1 Enemy/PNG/idle-1.png" id="1_fp8xq"]
 [ext_resource type="Script" path="res://scripts/skeleton.gd" id="1_im7pn"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bc8oxdexukwj5" path="res://assets/1 Enemy/PNG/attack-A6.png" id="24_8doxn"]
 [ext_resource type="Texture2D" uid="uid://yf624fbf2uig" path="res://assets/1 Enemy/PNG/attack-A7.png" id="25_pstdb"]
 [ext_resource type="Texture2D" uid="uid://bnbotqswkhls1" path="res://assets/1 Enemy/PNG/attack-A8.png" id="26_cnuve"]
+[ext_resource type="AudioStream" uid="uid://b2uqwh7a3nng3" path="res://assets/Sounds/SFX/17_orc_atk_sword_1.wav" id="28_2muxj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p3ujk"]
 size = Vector2(22, 60)
@@ -182,7 +183,7 @@ position = Vector2(-5, -4)
 target_position = Vector2(0, 6)
 
 [node name="RayCast2D2" type="RayCast2D" parent="."]
-position = Vector2(-21, -24)
+position = Vector2(-21, -13)
 target_position = Vector2(21, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -190,5 +191,8 @@ libraries = {
 "": SubResource("AnimationLibrary_hwe28")
 }
 autoplay = "walk"
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("28_2muxj")
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var hitbox = $HitBox/CollisionShape2D
 @onready var ray_cast_2d_2 = $RayCast2D2
 @onready var animation_player = $AnimationPlayer
+@onready var attack_sound = $AttackSound
 
 var health = 0
 var max_health = 75
@@ -42,7 +43,7 @@ func flip():
 		collision_shape_2d.position = Vector2(-21, -30)
 		hitbox.position = Vector2(-21, -30)
 		ray_cast_2d.position = Vector2(-5, -4)
-		ray_cast_2d_2.position = Vector2(-21, -24)
+		ray_cast_2d_2.position = Vector2(-21, -13)
 		healthbar.position = Vector2(-29, -16)
 		sprite_2d.offset = Vector2(0, 0)
 		speed = abs(speed)
@@ -50,7 +51,7 @@ func flip():
 		collision_shape_2d.position = Vector2(21, -30)
 		hitbox.position = Vector2(21, -30)
 		ray_cast_2d.position = Vector2(38, -4)
-		ray_cast_2d_2.position = Vector2(21, -24)
+		ray_cast_2d_2.position = Vector2(21, -13)
 		healthbar.position = Vector2(15, -16)
 		sprite_2d.offset = Vector2(41, 0)
 		speed = abs(speed) * -1
@@ -71,9 +72,10 @@ func taking_damage(damage:int):
 func _on_hit_box_area_entered(area):
 	if area.get_parent() is Player && !dead && can_attack:
 		animation_player.play("attack1")
+		attack_sound.play()
 		await get_tree().create_timer(0.7).timeout
 		if area.get_parent() is Player && !dead && can_attack:
-			area.get_parent().taking_damage(25)
+			area.get_parent().taking_damage(25 * GameManager.dificulty)
 		animation_player.play("walk")
 
 func get_hit():
@@ -88,7 +90,7 @@ func get_hit():
 		animation_player.play("walk")
 
 func die():
-	GameManager.score += 100
+	GameManager.score += 100 * GameManager.dificulty
 	dead = true
 	current_speed = speed
 	speed = 0

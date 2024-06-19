@@ -20,5 +20,5 @@ func die():
 
 func _on_area_2d_area_entered(area):
 	if area.get_parent() is Player && !hit:
-		area.get_parent().taking_damage(25)
+		area.get_parent().taking_damage(25 * GameManager.dificulty)
 		die()

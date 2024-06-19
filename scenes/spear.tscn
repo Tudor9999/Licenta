@@ -1,0 +1,119 @@
+[gd_scene load_steps=17 format=3 uid="uid://r3i2rb4dmbg3"]
+
+[ext_resource type="Script" path="res://scripts/spear.gd" id="1_62a02"]
+[ext_resource type="Texture2D" uid="uid://blrcdp5nfnwdo" path="res://assets/Trap/Spear.png" id="2_f8mwa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfua1"]
+atlas = ExtResource("2_f8mwa")
+region = Rect2(0, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wa4ex"]
+atlas = ExtResource("2_f8mwa")
+region = Rect2(16, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6fer"]
+atlas = ExtResource("2_f8mwa")
+region = Rect2(32, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6h6r"]
+atlas = ExtResource("2_f8mwa")
+region = Rect2(48, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7b0c"]
+atlas = ExtResource("2_f8mwa")
+region = Rect2(64, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ragno"]
+atlas = ExtResource("2_f8mwa")
+region = Rect2(80, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5i3k"]
+atlas = ExtResource("2_f8mwa")
+region = Rect2(96, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg8bn"]
+atlas = ExtResource("2_f8mwa")
+region = Rect2(112, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iaouo"]
+atlas = ExtResource("2_f8mwa")
+region = Rect2(128, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qo1p"]
+atlas = ExtResource("2_f8mwa")
+region = Rect2(144, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_satrd"]
+atlas = ExtResource("2_f8mwa")
+region = Rect2(160, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p77ie"]
+atlas = ExtResource("2_f8mwa")
+region = Rect2(176, 0, 16, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gfi5e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfua1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wa4ex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6fer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6h6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7b0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ragno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5i3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg8bn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iaouo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qo1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_satrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p77ie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfua1")
+}],
+"loop": false,
+"name": &"spear",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2jcja"]
+size = Vector2(32, 62)
+
+[node name="Spear" type="Node2D"]
+script = ExtResource("1_62a02")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(-1, -1)
+sprite_frames = SubResource("SpriteFrames_gfi5e")
+animation = &"spear"
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_2jcja")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -4,6 +4,7 @@ extends Node2D
 
 func activate():
 	if final:
+		print("final")
 		GameManager.win()
 
 func _on_area_2d_area_entered(area):

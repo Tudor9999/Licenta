@@ -18,6 +18,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var sprite_2d = $Sprite2D
 @onready var collision_shape_2d = $Area2D/CollisionShape2D
 @onready var health_bar = $HealthBar
+@onready var attack_sound = $AttackSound
+@onready var hit_sound = $HitSound
+@onready var die_sound = $DieSound
+@onready var roll_sound = $RollSound
 
 @export var attacking = false
 @export var dead = false
@@ -33,8 +37,10 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("Attack1"):
+		attack_sound.play()
 		attack()
 	if Input.is_action_just_pressed("roll"):
+		roll_sound.play()
 		roll()
 
 func _physics_process(delta):
@@ -73,7 +79,6 @@ func attack():
 			area.get_parent().taking_damage(25)
 	
 	attacking = true
-	audio_player.play()
 	animation_player.play("attack1")
 
 func update_animation():
@@ -97,6 +102,7 @@ func update_animation():
 func taking_damage(damage : int):
 	if take_damage:
 		iframes()
+		hit_sound.play()
 		health -= damage
 		health_bar._set_health(health)
 		
@@ -126,5 +132,6 @@ func _on_timer_timeout():
 
 func die():
 	dead = true
+	die_sound.play()
 	animation_player.play("dead")
 	timer.start()

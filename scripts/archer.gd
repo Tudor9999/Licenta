@@ -13,6 +13,10 @@ var firerate = 2
 @onready var animation_player = $AnimationPlayer
 @onready var fire_point = $FirePoint
 @onready var healthbar = $Sprite2D/EnemyHealthBar
+@onready var die_sound = $DieSound
+@onready var damage_sound = $DamageSound
+@onready var bow_sound = $BowSound
+@onready var bowsound = $Bowsound
 
 var health
 var max_health = 75
@@ -27,6 +31,7 @@ func _ready():
 
 func shoot():
 	while shooting && !dead:
+		bowsound.play()
 		animation_player.play("attack")
 		await get_tree().create_timer(firerate).timeout
 
@@ -44,6 +49,7 @@ func _physics_process(delta):
 
 func taking_damage(damage_amount):
 	if !dead:
+		damage_sound.play()
 		health -= damage_amount
 		animation_player.play("hit")
 		healthbar._set_health(health)
@@ -52,6 +58,8 @@ func taking_damage(damage_amount):
 		die()
 
 func die():
+	GameManager.score += 100 * GameManager.dificulty
+	die_sound.play()
 	dead = true
 	animation_player.play("dead")
 	await get_tree().create_timer(0.4).timeout

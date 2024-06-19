@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://db6tj1itm5ktq"]
+[gd_scene load_steps=29 format=3 uid="uid://db6tj1itm5ktq"]
 
 [ext_resource type="Script" path="res://scripts/archer.gd" id="1_eyr3m"]
 [ext_resource type="PackedScene" uid="uid://c3fwu1nq0672b" path="res://scenes/enemy_health_bar.tscn" id="1_ft1fx"]
@@ -18,29 +18,15 @@
 [ext_resource type="Texture2D" uid="uid://cj4s5is4qt5yh" path="res://assets/5 Enemy/PNG/dead-1.png" id="15_a6j37"]
 [ext_resource type="Texture2D" uid="uid://tn2yjlhk1pg7" path="res://assets/5 Enemy/PNG/dead-2.png" id="16_4nkd8"]
 [ext_resource type="Texture2D" uid="uid://d3akn3gu64mlm" path="res://assets/5 Enemy/PNG/dead-3.png" id="17_v40md"]
+[ext_resource type="AudioStream" uid="uid://4gwx4krv2u28" path="res://assets/Sounds/SFX/hurt.wav" id="19_6sqxs"]
+[ext_resource type="AudioStream" uid="uid://crc587ry5ag4f" path="res://assets/Sounds/SFX/11_human_damage_3.wav" id="20_3u3iq"]
+[ext_resource type="AudioStream" uid="uid://cponp0b0sbiij" path="res://assets/Sounds/SFX/bow-release-bow-and-arrow-4-101936.mp3" id="21_xmlm0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rnc2r"]
 size = Vector2(20, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lyxef"]
 size = Vector2(20, 56)
-
-[sub_resource type="Animation" id="Animation_fvm2g"]
-resource_name = "idle"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("3_3ux0h"), ExtResource("4_u4ebd")]
-}
 
 [sub_resource type="Animation" id="Animation_2cyap"]
 resource_name = "attack"
@@ -72,6 +58,22 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_o0dfx"]
+resource_name = "dead"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("15_a6j37"), ExtResource("16_4nkd8"), ExtResource("17_v40md"), ExtResource("2_t7x73")]
+}
+
 [sub_resource type="Animation" id="Animation_yxc4l"]
 resource_name = "hit"
 length = 0.3
@@ -100,9 +102,10 @@ tracks/1/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_o0dfx"]
-resource_name = "dead"
-length = 0.3
+[sub_resource type="Animation" id="Animation_fvm2g"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,10 +113,10 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("15_a6j37"), ExtResource("16_4nkd8"), ExtResource("17_v40md"), ExtResource("2_t7x73")]
+"values": [ExtResource("3_3ux0h"), ExtResource("4_u4ebd")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fkx78"]
@@ -159,3 +162,12 @@ libraries = {
 "": SubResource("AnimationLibrary_fkx78")
 }
 autoplay = "idle"
+
+[node name="DieSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_6sqxs")
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_3u3iq")
+
+[node name="Bowsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_xmlm0")

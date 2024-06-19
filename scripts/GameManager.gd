@@ -9,6 +9,7 @@ var pause_menu
 var final_screen
 var score_label
 var score : int = 0
+var dificulty : int = 1
 
 func gain_diamonds(gained_diamonds):
 	diamonds += gained_diamonds

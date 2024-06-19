@@ -9568,19 +9568,19 @@ text = "Resume"
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(707, 0)
+motion_mirroring = Vector2(1530, 0)
 
 [node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(355, -282)
-scale = Vector2(1.65962, 1.45573)
+position = Vector2(554, 12.5)
+scale = Vector2(3.601, 2.737)
 texture = ExtResource("3_tc473")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(707, 0)
+motion_mirroring = Vector2(1530, 0)
 
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(355, -82.5)
-scale = Vector2(1.66197, 1.45573)
+[node name="Background2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(558, -71)
+scale = Vector2(3.60094, 2.77865)
 texture = ExtResource("4_seykt")
 
 [node name="Diamonds" type="Node" parent="."]
